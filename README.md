@@ -9,7 +9,7 @@
 
 ### Инсталяция MariaDb и запуск приложения
 
-docker-compose up -d  
+docker compose up -d  
 
 composer install
 
@@ -20,5 +20,5 @@ composer install
 Доступ к приложению:
 http://127.0.0.1:8080
 
-Доступ к phpMyAdmin:
+Доступ к phpMyAdmin (login: alex; password: Qwerty123):
 http://127.0.0.1:8081
