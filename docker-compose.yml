@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    image: mariadb:10.6 # Use a specific version for stability
+    container_name: yii2-mariadb
+    restart: unless-stopped
+    environment:
+      # These variables set up the initial database, user, and password
+      MARIADB_ROOT_PASSWORD: pa$$word           # Change this to a secure password
+      MARIADB_DATABASE: short_link_db           # Change this to your desired database name
+      MARIADB_USER: alex                        # Change this to your desired database user
+      MARIADB_PASSWORD: Qwerty123               # Change this to a secure password
+    volumes:
+      # This volume ensures your data persists even if the container is removed
+      - db_data:/var/lib/mysql
+    ports:
+      # Optional: Expose the port to access the DB from your host machine (e.g., via phpMyAdmin or a client)
+      - "3306:3306"
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - "8081:80"
+      environment:
+        PMA_HOST: mariadb
+        MYSQL_ROOT_PASSWORD: pa$$word
+      depends_on:
+        - mariadb
+
+volumes:
+  db_data:
+    driver: local
